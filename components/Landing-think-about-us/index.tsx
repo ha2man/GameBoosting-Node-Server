@@ -1,6 +1,6 @@
 export default function Landing_Think_About_US() {
   return (
-    <div className="container mt-32  px-4">
+    <div className="container mt-32 px-4 ">
       <p className="text-center font-bold text-6xl">
         What People Think About Us
       </p>
@@ -9,22 +9,20 @@ export default function Landing_Think_About_US() {
         <div className="static mt-28">
           <img src="/images/Mask Group.jpg" alt="Mask" />
         </div>
-        <div className="absolute rounded-full border-2 border-grey-500 w-[58rem] h-[58rem] "></div>
-        <div className="absolute rounded-full border-2 border-grey-500 w-[44rem] h-[44rem] mt-28"></div>
         <div className="absolute rounded-full border-4 border-blue-500 w-[30rem] h-[30rem] mt-56"></div>
 
         <div className="absolute w-1/3 mt-96 grid justify-items-center">
           <img src="/images/person.png" alt="person" />
           <div className="grid justify-items-center static mt-4">
             <div className="w-14 h-14 rotate-45 bg-white"></div>
-            <div className="box-border h-auto w-auto p2  rounded-xl bg-white absolute mt-4 p-4">
-              <p className="text-lg">
+            <div className="flex flex-col box-border shadow-2xl h-auto w-auto p2 items-center rounded-xl bg-white absolute mt-4 p-4">
+              <p className="text-lg text-center flex">
                 Build your financial literacy within a transparent community.
                 Follow other investors, share insights with people from
                 different professional backgrounds, and never be alone.
               </p>
-              <p className=" text-center font-bold text-2xl ">Jony Scotty</p>
-              <p className="text-center text-lg">UI designer</p>
+              <p className=" text-center flex font-bold text-2xl ">Jony Scotty</p>
+              <p className="text-center flex text-lg">UI designer</p>
             </div>
           </div>
         </div>

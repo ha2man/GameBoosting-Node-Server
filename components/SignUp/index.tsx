@@ -21,7 +21,7 @@ const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
         <ModalDialog
           aria-labelledby="basic-modal-dialog-title"
           aria-describedby="basic-modal-dialog-description"
-          className="w-1/3 bg-gray-200"
+          className="w-1/3 bg-white"
         >
           <ModalClose />
           <p className="text-center text-5xl font-bold leading-10 mt-4">

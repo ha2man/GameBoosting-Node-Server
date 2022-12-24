@@ -6,10 +6,10 @@ export default function Landing_JobStyle() {
       </p>
       <div className="grid justify-items-center">
         <div className="inline-grid grid-cols-3 gap-4 ">
-          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100">
+          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100 shadow-sm">
             <p className="mx-0 text-right text-sm">180 Jobs Available</p>
             <div className="flex items-center">
-              <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center grid justify-items-center mx-8">
+              <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center justify-items-center mx-8">
                 <svg
                   width="50"
                   height="50"
@@ -38,7 +38,7 @@ export default function Landing_JobStyle() {
               <p className=" text-center font-bold text-2xl">UX/UI design</p>
             </div>
           </div>
-          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100">
+          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100 shadow-sm">
             <p className="mx-0 text-right text-sm">180 Jobs Available</p>
             <div className="mx-auto flex items-center">
               <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center grid justify-items-center mx-8">
@@ -58,7 +58,7 @@ export default function Landing_JobStyle() {
               <p className="text-center font-bold text-2xl">Development</p>
             </div>
           </div>
-          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100">
+          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100 shadow-sm">
             <p className="mx-0 text-right text-sm">180 Jobs Available</p>
             <div className="mx-auto flex items-center">
               <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center grid justify-items-center mx-8">
@@ -95,7 +95,7 @@ export default function Landing_JobStyle() {
             </div>
           </div>
 
-          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100">
+          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100 shadow-sm">
             <p className="mx-0 text-right text-sm">180 Jobs Available</p>
             <div className="mx-auto flex items-center">
               <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center grid justify-items-center mx-8">
@@ -162,7 +162,7 @@ export default function Landing_JobStyle() {
               <p className="text-center font-bold text-2xl">Content Writer</p>
             </div>
           </div>
-          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100">
+          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100 shadow-sm">
             <p className="mx-0 text-right text-sm">180 Jobs Available</p>
             <div className="mx-auto flex items-center">
               <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center grid justify-items-center mx-8">
@@ -190,7 +190,7 @@ export default function Landing_JobStyle() {
               <p className="text-center font-bold text-2xl">Finance Manager</p>
             </div>
           </div>
-          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100">
+          <div className="box-border h-32 w-auto p-2 border-4 rounded-lg bg-gray-100 shadow-sm">
             <p className="mx-0 text-right text-sm">180 Jobs Available</p>
             <div className="mx-auto flex items-center">
               <div className="box-border w-20 h-20 bg-gray-200 rounded-full flex items-center grid justify-items-center mx-8">

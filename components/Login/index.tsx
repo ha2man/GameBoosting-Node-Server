@@ -68,7 +68,7 @@ const Login: FunctionComponent<ModalProps> = ({ open, Close }) => {
             </Stack>
           </form>
           <p className="my-6 text-center text-lg">Or</p>
-          <div className="flex justify-center flex space-x-4">
+          <div className="flex justify-center space-x-4">
             <div className="flex space-x-4 rounded-lg border-2 px-8 py-2 ">
               <svg
                 width="86"

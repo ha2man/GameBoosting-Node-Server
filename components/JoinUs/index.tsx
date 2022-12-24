@@ -33,7 +33,7 @@ const SignUp: FunctionComponent<JoinUsModal> = ({ open, closeJoinUs }) => {
               closeJoinUs()
             }}
           >
-            <div className="flex justify-center flex space-x-4">
+            <div className="flex justify-center space-x-4">
               <div className="rounded-lg border-2 py-8 grid justify-items-center w-1/2">
                 <svg
                   width="101"

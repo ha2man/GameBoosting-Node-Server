@@ -6,8 +6,8 @@ export default function Landing_lady() {
         <div className="flex flex-col items-center pl-[8.75%] w-[50%] h-[100%]">
            <div className="flex flex-col">
             <h1 className="text-[68px] pt-[10%] pb-[3.5%]">Work More <span className="text-main">Pay Less</span></h1>
-            <div className="text-[20px] pb-[7.1%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et mattis dolor, ut egestas risus. Proin iaculis porta hendrerit. Aliquam facilisis tincidunt enim, et aliquam felis vestibulum quis. Nunc dapibus libero nec lacinia commodo. Nullam non ante sit amet </div> 
-            <Link href="/" className="text-[18px] text-center text-white w-[28.8%] rounded-[12px] bg-main transition-all duration-500 mx-5 font-bold py-4">Get Started</Link>
+            <div className="text-[20px] pb-[7.1%]">Vantafox is a community of freelancers dedicated to providing the best and most affordable services for businesses and individuals. With specialists hailing from many different fields, we have a professional for every job. Join the best and most supportive community of professionals today!</div> 
+            <Link href="/" className="text-[18px] text-center text-white w-[28.8%] rounded-[12px] bg-main transition-all duration-500 font-bold py-4">Get Started</Link>
             </div>
         </div>
 
