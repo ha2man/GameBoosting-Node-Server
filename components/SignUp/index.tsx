@@ -8,6 +8,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import LockIcon from '@mui/icons-material/Lock'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import PublicIcon from '@mui/icons-material/Public'
+import axios from 'axios'
 
 export interface SignUpModalProps {
   show: boolean
@@ -15,6 +16,12 @@ export interface SignUpModalProps {
 }
 
 const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
+  const [payload, setPayload] = useState({
+    username: "",
+    email: "",
+    password: "",
+    country: ""
+  }) 
   return (
     <>
       <Modal open={show} onClose={closeSignUp}>
@@ -30,6 +37,7 @@ const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
           <form
             onSubmit={(event) => {
               event.preventDefault()
+              axios.post("http://localhost:1337/api/auth/local/register", payload).then(res => console.log(res))
               closeSignUp()
             }}
           >
@@ -40,6 +48,8 @@ const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
                 className="mt-14 bg-white"
                 startDecorator={<AccountCircleIcon />}
                 placeholder="Username"
+                value={payload.username}
+                onChange={e => setPayload(p => ({...p, username: e.target.value}))}
               />
               <TextField
                 autoFocus
@@ -47,6 +57,8 @@ const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
                 className="mt-14 bg-white"
                 startDecorator={<EmailIcon />}
                 placeholder="Email"
+                value={payload.email}
+                onChange={e => setPayload(p => ({...p, email: e.target.value}))}
               />
               <TextField
                 type="password"
@@ -55,6 +67,8 @@ const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
                 className="mt-14 bg-white"
                 startDecorator={<LockIcon />}
                 placeholder="Password"
+                value={payload.password}
+                onChange={e => setPayload(p => ({...p, password: e.target.value}))}
               />
               <TextField
                 type="password"
@@ -63,6 +77,8 @@ const SignUp: FunctionComponent<SignUpModalProps> = ({ show, closeSignUp }) => {
                 className="mt-14 bg-white"
                 startDecorator={<PublicIcon />}
                 placeholder="Country"
+                value={payload.country}
+                onChange={e => setPayload(p => ({...p, country: e.target.value}))}
               />
 
               <button

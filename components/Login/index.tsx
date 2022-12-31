@@ -8,6 +8,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import LockIcon from '@mui/icons-material/Lock'
 
 import SignUp from '../SignUp'
+import axios from 'axios'
 
 export interface ModalProps {
   open: boolean
@@ -16,7 +17,10 @@ export interface ModalProps {
 const Login: FunctionComponent<ModalProps> = ({ open, Close }) => {
   const [show, setShow] = useState<boolean>(false)
   const closeSignUp = () => setShow(false)
-
+  const [payload, setPayload] = useState({
+    identifier: "",
+    password: ""
+  })
   const modal_Show_Hide = () => {
     setShow(true)
     Close()
@@ -38,8 +42,12 @@ const Login: FunctionComponent<ModalProps> = ({ open, Close }) => {
           <form
             onSubmit={(event) => {
               event.preventDefault()
-              Close()
-              console.log('check')
+              axios.post("http://localhost:1337/api/auth/local", payload).then(res => {
+                alert(JSON.stringify(res.data, null, 20))
+                Close()
+              }).catch(er => {
+                console.log(er)
+              })
             }}
           >
             <Stack spacing={4}>
@@ -48,7 +56,9 @@ const Login: FunctionComponent<ModalProps> = ({ open, Close }) => {
                 required
                 className="mt-14 bg-white"
                 startDecorator={<EmailIcon />}
-                placeholder="Email"
+                placeholder="Email or Username"
+                value={payload.identifier}
+                onChange={e => setPayload(p => ({...p, identifier: e.target.value}))}
               />
               <TextField
                 type="password"
@@ -57,6 +67,8 @@ const Login: FunctionComponent<ModalProps> = ({ open, Close }) => {
                 className="mt-14 bg-white"
                 startDecorator={<LockIcon />}
                 placeholder="Password"
+                value={payload.password}
+                onChange={e => setPayload(p => ({...p, password: e.target.value}))}
               />
 
               <button
