@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "prestart": "jest ./test",
+    "start": "nodemon app.js",
+    "test": "jest ./test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.7",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.19",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "node-mocks-http": "^1.11.0"
+  }
+}
