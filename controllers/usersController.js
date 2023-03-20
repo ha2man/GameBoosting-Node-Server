@@ -10,7 +10,7 @@ const authenticate = async (req, res, next)=>{
       res.status(401).send("No token")
     }else{
       const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
-      const rootUser = await User.findOne({_id : verifyToken._id, "tokens.token" : token});
+      const rootUser = await User.findOne({_id: verifyToken._id, token: token});
       if(!rootUser){
         res.status(401).send("User Not Found")
       }else{
@@ -31,7 +31,6 @@ const login = async (req, res, next) => {
     if (user) {
       // Verify Password
       const isMatch = await bcryptjs.compare(password, user.password);
-      // console.log(`isMatch = ${isMatch}`);
 
       if (isMatch) {
         // Generate Token Which is Define in User Schema
@@ -54,25 +53,38 @@ const login = async (req, res, next) => {
     }
   } catch (err) {
     console.log(err);
-    return res.status(400).send("Server error");
+    return res.status(500).send("Server error");
   }
 };
 
 const registerUser = async (req, res, next) => {
   try {
-    const { username, email, name, password } = req.body;
+    const { username, email, first_name, last_name, password } = req.body;
     let user;
     usertype = "user";
-    if(req.cookies && req.cookies.usertype === "admin")
-      usertype = "employee";
+    // if(req.cookies && req.cookies.usertype === "admin")
+    //   usertype = "employee";
+
+    // user = await User.findOne({ username });
+
+    // if(user){
+    //   return res.status(400).send("Username already exists");
+    // }
+
     user = await User.create({
       username,
       email,
-      name,
+      name: first_name + " " + last_name,
       password,
       usertype
     });
-    return res.status(200).send("Registered new user");
+    console.log(user)
+    return res.status(200).json({
+      "username": user.username,
+      "usertype": user.usertype,
+      "userid": user.id,
+      "message": "Registered new user"
+    })
   } catch (err) {
     console.log(err);
     return res.status(400).send("Server error");
