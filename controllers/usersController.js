@@ -2,6 +2,8 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const User = require("../models/User");
 
+const constants=require("./../helpers/constants")
+
 const authenticate = async (req, res, next)=>{
   try {
     // Get the Cookies
@@ -43,57 +45,53 @@ const login = async (req, res, next) => {
           "username": user.username,
           "usertype": user.usertype,
           "jwt": token,
-          "userid": user.id
+          "userid": user.id,
+          "message": constants.LOGIN_SUCCESSFUL
         })
       } else {
-        return res.status(401).send("Invalid Credentials");
+        return res.status(401).send(constants.INVALID_CREDENTIALS);
       }
     } else {
-      return res.status(401).send("Invalid Credentials");
+      return res.status(401).send(constants.INVALID_CREDENTIALS);
     }
   } catch (err) {
     console.log(err);
-    return res.status(500).send("Server error");
+    return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
   }
 };
 
 const registerUser = async (req, res, next) => {
   try {
-    const { username, email, first_name, last_name, password } = req.body;
+    const { username, password } = req.body;
     let user;
     usertype = "user";
     // if(req.cookies && req.cookies.usertype === "admin")
     //   usertype = "employee";
 
-    // user = await User.findOne({ username });
+    user = await User.findOne({ username });
 
-    // if(user){
-    //   return res.status(400).send("Username already exists");
-    // }
+    if(user){
+      return res.status(400).send(constants.ALREADY_EXIST);
+    }
 
     user = await User.create({
       username,
-      email,
-      name: first_name + " " + last_name,
+      email: username+"@gmail.com",
       password,
       usertype
     });
-    console.log(user)
     return res.status(200).json({
-      "username": user.username,
-      "usertype": user.usertype,
       "userid": user.id,
-      "message": "Registered new user"
+      "message": constants.SUCCESSFUL_REGISTRATION
     })
   } catch (err) {
     console.log(err);
-    return res.status(400).send("Server error");
+    return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
   }
 };
 
 const getAllUsers = async (req, res, next) => {
   try {
-    if(!req.cookies || !req.cookies.username)return res.status(400).send("Login first");
     let users;
     usertype = req.cookies.usertype;
     if(usertype == "admin"){

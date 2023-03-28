@@ -13,9 +13,25 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  country: {
+    type: String,
+    required: false,
+  },
+  phone: {
+    type: Number,
+    required: true,
+    unique: true,
+    default: 0
+  },
   name: {
     type: String,
-    required: true,
+    required: false,
+    default: ""
+  },
+  address: {
+    type: String,
+    required: false,
+    default: ""
   },
   password: {
     type: String,
@@ -25,20 +41,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true
-      }
-    }
-  ],
+  token: {
+    type: String,
+    required: false
+  },
   canAcceptJob: {
     type: Boolean,
     required: true,
     default: true
+  },
+  verifiedStatus: {
+    email: {
+      type : Date,
+      default: Date.now
+    },
+    phone: {
+      type : Date,
+      default: Date.now
+    },
+    payment: {
+      type : Date,
+      default: Date.now
+    }
   }
-});
+}, {timestamps: true});
 
 // Hashing Password to Secure
 userSchema.pre('save', async function(next){
@@ -52,7 +78,7 @@ userSchema.pre('save', async function(next){
 userSchema.methods.generateToken = async function(){
   try {
     let generatedToken = jwt.sign({_id : this._id}, process.env.SECRET_KEY);
-    this.tokens = this.tokens.concat({token : generatedToken});
+    this.token = generatedToken;//this.tokens.concat({token : generatedToken});
     await this.save();
     return generatedToken;
   } catch (error) {
