@@ -1,6 +1,6 @@
 const basicSetup = require('./helpers/basicSetup')
 const User = require('../models/User');
-const usersController = require("../controllers/user-controller");
+const usersController = require("../controllers/usersController");
 const mocks = require('node-mocks-http');
 const {createAdminUser} = require('../helpers/createAdmin');
 

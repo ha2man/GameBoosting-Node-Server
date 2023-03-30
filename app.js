@@ -1,5 +1,6 @@
 const http = require("http");
 const express = require("express");
+const bodyParser = require('body-parser');
 const mongooseConnect = require('./helpers/dbConnect');
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -9,7 +10,7 @@ const socket = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 
-const whitelist = ['http://localhost:5000', 'http://localhost:3001'];
+const whitelist = ['http://localhost:5000', 'http://localhost:3000'];
 const corsOptions = {
   credentials: true,
   exposedHeaders: ["set-cookie"],
@@ -20,6 +21,12 @@ const corsOptions = {
   }
 }
 app.use(cors(corsOptions));
+app.use(
+  bodyParser.urlencoded({
+    limit: '50mb',
+    extended: false,
+  }),
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", router);

@@ -3,6 +3,10 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const jobSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -17,7 +21,7 @@ const jobSchema = new mongoose.Schema({
   },
   currency: {
     type: String,
-    required: true,
+    default: "$",
   },
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,

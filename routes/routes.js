@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const usersController = require("../controllers/usersController");
-// const jobsController = require("../controllers/jobsController");
+const jobsController = require("../controllers/jobsController");
 // const chatController = require("../controllers/chatsController");
 
 // Auth routes
@@ -16,6 +16,20 @@ router.post("/users/new", usersController.registerUser);
 
 // User routes - admin view
 // router.get("/users", usersController.getAllUsers);
+
+/* ------------------------------------------------------------------------------------------ */
+
+// Job routes
+router.get("/jobs", jobsController.getAllJobs);             // * All *
+router.get("/jobs/detail/:id", jobsController.getJobById);      // Admin    Employer    Freelancer
+router.get("/jobs/prev", jobsController.getAllPreviousJobs);    //          Employer    Freelancer
+router.post("/jobs/create", jobsController.createJob);          //          Employer
+router.put("/jobs/:id", jobsController.updateJob);              //          Employer
+router.post("/jobs/:id", jobsController.acceptJob);             //                      Freelancer
+router.delete("/jobs/:id", jobsController.deleteJob);           // Admin    Employer
+router.post("/jobs/publish/:id", jobsController.publishJob);    // Admin
+
+/* ------------------------------------------------------------------------------------------ */
 
 // Chat routes
 // router.get("/chats", chatController.getAllChats);
