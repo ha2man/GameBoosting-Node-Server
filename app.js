@@ -14,11 +14,11 @@ const whitelist = ['http://localhost:5000', 'http://localhost:3000'];
 const corsOptions = {
   credentials: true,
   exposedHeaders: ["set-cookie"],
-  origin: (origin, callback) => {
-    if(whitelist.includes(origin))
-      return callback(null, true)
-      callback(new Error('Not allowed by CORS'));
-  }
+  // origin: (origin, callback) => {
+  //   if(whitelist.includes(origin))
+  //     return callback(null, true)
+  //     callback(new Error('Not allowed by CORS'));
+  // }
 }
 app.use(cors(corsOptions));
 app.use(

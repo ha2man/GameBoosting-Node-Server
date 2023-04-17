@@ -1,5 +1,5 @@
 const bcryptjs = require('bcryptjs');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 const User = require("../models/User");
 
 const constants=require("./../helpers/constants")
@@ -27,9 +27,9 @@ const authenticate = async (req, res, next)=>{
 
 const login = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     let user;
-    user = await User.findOne({ username });
+    user = await User.findOne({ email });
     if (user) {
       // Verify Password
       const isMatch = await bcryptjs.compare(password, user.password);
@@ -40,9 +40,11 @@ const login = async (req, res, next) => {
         res.cookie("usertype", user.usertype)
         res.cookie("jwt", token)
         res.cookie("userid", user.id)
-        res.cookie("username", user.username)
+        res.cookie("email", user.email)
         return res.status(200).json({
-          "username": user.username,
+          "name": user.name,
+          "email": user.email,
+          "discord": user.discord,
           "usertype": user.usertype,
           "jwt": token,
           "userid": user.id,
@@ -62,21 +64,23 @@ const login = async (req, res, next) => {
 
 const registerUser = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { name, email, discord, password } = req.body;
     let user;
     usertype = "user";
     // if(req.cookies && req.cookies.usertype === "admin")
     //   usertype = "employee";
 
-    user = await User.findOne({ username });
-
-    if(user){
-      return res.status(400).send(constants.ALREADY_EXIST);
+    user = await User.findOne({ email });
+    if(user){return res.status(400).send(constants.EMAIL_ALREADY_EXIST);}
+    if (discord) {
+      user = await User.findOne({ discord });
+      if(user){return res.status(400).send(constants.DISCORD_ALREADY_EXIST);}
     }
 
     user = await User.create({
-      username,
-      email: username+"@gmail.com",
+      name,
+      email,
+      discord,
       password,
       usertype
     });
@@ -89,6 +93,31 @@ const registerUser = async (req, res, next) => {
     return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
   }
 };
+
+const getUser = async (req, res, next) => {
+  try {
+    const { email, password, discord, comment } = req.body;
+    const user = await User.findOne({ email });
+
+    if (user) {
+      const isMatch = await bcryptjs.compare(password, user.password);
+      if (isMatch) {
+        return res.status(200).json({
+          userid: user.id,
+        })
+      }
+      else {
+        return res.status(401).send(constants.INVALID_CREDENTIALS);
+      }
+    }
+    else {
+      return res.status(401).send(constants.INVALID_CREDENTIALS);
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
+  }
+}
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -107,7 +136,7 @@ const getAllUsers = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   try {
-    if(!req.cookies || !req.cookies.username)return res.status(400).send("Login first");
+    if(!req.cookies || !req.cookies.email)return res.status(400).send("Login first");
     if(req.cookies.usertype !== "admin"){
       return res.status(400).send("No users found");
     }
@@ -130,5 +159,6 @@ exports.authenticate = authenticate;
 exports.login = login;
 exports.registerUser = registerUser;
 exports.logout = logout;
+exports.getUser = getUser;
 exports.getAllUsers = getAllUsers
 exports.deleteUser = deleteUser

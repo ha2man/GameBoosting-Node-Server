@@ -3,35 +3,18 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-  username: {
+  name: {
     type: String,
     required: true,
-    unique: true,
   },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  country: {
+  discord: {
     type: String,
-    required: false,
-  },
-  phone: {
-    type: Number,
-    required: true,
     unique: true,
-    default: 0
-  },
-  name: {
-    type: String,
-    required: false,
-    default: ""
-  },
-  address: {
-    type: String,
-    required: false,
-    default: ""
   },
   password: {
     type: String,
@@ -45,25 +28,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  canAcceptJob: {
-    type: Boolean,
-    required: true,
-    default: true
-  },
-  verifiedStatus: {
-    email: {
-      type : Date,
-      default: Date.now
-    },
-    phone: {
-      type : Date,
-      default: Date.now
-    },
-    payment: {
-      type : Date,
-      default: Date.now
-    }
-  }
 }, {timestamps: true});
 
 // Hashing Password to Secure
