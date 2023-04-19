@@ -51,7 +51,6 @@ const sendEmail = async (target_email, context) => {
                   console.log({ message: "Mail send", message_id: info.messageId });
                 }
               })
-              return res.status(200).json({ status: "success" });
             }
           });
     } catch (err) {
