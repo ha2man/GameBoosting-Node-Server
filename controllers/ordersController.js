@@ -114,8 +114,8 @@ const createOrder = async ( req, res, next ) => {
       options,
     };
     console.log(context);
-    // await sendEmail(email, context);
-    // await sendEmail(process.env.EMAIL, context);
+    await sendEmail(email, context);
+    await sendEmail(process.env.EMAIL, context);
     return res.status(200).json({
       "message": constants.SUCCESSFUL_ORDER_CREATE,
     })
