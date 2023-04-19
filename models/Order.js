@@ -44,6 +44,16 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  account: {
+    userdata: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    }
+  },
   mainOption: {
     platform: {
         type: String,

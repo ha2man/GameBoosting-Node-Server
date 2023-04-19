@@ -17,7 +17,7 @@ router.get('/api/order', ordersController.getAllOrders);
 router.get('/api/order/:id', ordersController.getOrder);
 
 // Email Routes (Test)
-router.get('/api/email', ordersController.sendEmail);
+// router.get('/api/email', ordersController.sendEmail);
 
 // User routes - user view
 // router.delete("/users/:id", usersController.deleteUser);
