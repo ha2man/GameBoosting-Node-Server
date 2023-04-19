@@ -28,7 +28,7 @@ const sendEmail = async (target_email, context) => {
               const transporter = nodemailer.createTransport({
                 port: 587,
                 host: "send.one.com",
-                ignoreTLS: false,
+                // ignoreTLS: false,
                 auth: {
                   user: process.env.EMAIL,
                   pass: process.env.PASSWORD,
