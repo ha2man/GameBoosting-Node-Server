@@ -63,7 +63,7 @@ const getOrder = async (req, res, next) => {}
 const getAllOrders = async (req, res, next) => {
   try {
     const { limit } = req.body;
-    const orders = await Order.find().sort({_id:-1}).limit(limit * 4);
+    const orders = await Order.find().sort({date:-1}).limit(limit * 4);
     return res.status(200).json({orders});
   } catch (err) {
     console.log(err);
