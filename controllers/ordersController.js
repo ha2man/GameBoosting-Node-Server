@@ -59,7 +59,16 @@ const sendEmail = async (target_email, context) => {
     }
 }
 
-const getOrder = async (req, res, next) => {}
+const getMyOrders = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const orders = await Order.find({userId: id}).sort({date:-1});
+    return res.status(200).json({orders});
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
+  }
+}
 const getAllOrders = async (req, res, next) => {
   try {
     const { limit } = req.body;
@@ -125,5 +134,5 @@ const createOrder = async ( req, res, next ) => {
 }
 
 exports.createOrder = createOrder;
-exports.getOrder = getOrder;
+exports.getMyOrders = getMyOrders;
 exports.getAllOrders = getAllOrders;

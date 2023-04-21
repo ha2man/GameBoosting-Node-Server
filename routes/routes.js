@@ -14,7 +14,7 @@ router.get("/api/auth", usersController.getUser);
 // Order Routes
 router.post('/api/order/create', ordersController.createOrder);
 router.get('/api/order', ordersController.getAllOrders);
-router.get('/api/order/:id', ordersController.getOrder);
+router.get('/api/order/:id', ordersController.getMyOrders);
 
 // Email Routes (Test)
 // router.get('/api/email', ordersController.sendEmail);
