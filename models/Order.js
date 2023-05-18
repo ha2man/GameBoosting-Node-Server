@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const User = require("./User");
 
 const orderSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Types.ObjectId,
-        ref: User,
-    },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: User,
+  },
+  boosterId: {
+    type: mongoose.Types.ObjectId,
+    ref: User,
+  },
   game: {
     type: String,
     required: true,
@@ -47,11 +51,11 @@ const orderSchema = new mongoose.Schema({
   account: {
     userdata: {
       type: String,
-      required: true,
+      default: '',
     },
     password: {
       type: String,
-      required: true,
+      default: '',
     }
   },
   mainOption: {

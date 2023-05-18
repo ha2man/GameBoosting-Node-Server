@@ -79,6 +79,29 @@ const getAllOrders = async (req, res, next) => {
     return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
   }
 }
+const getAvailableOrders = async (req, res, next) => {
+  try {
+    const orders = await Order.find({state:['Waiting', 'Accepted']}).sort({date:-1});
+    return res.status(200).json({orders});
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
+  }
+}
+
+const acceptOrder = async ( req, res, next ) => {
+  try {
+    const id = req.params.id;
+    const order_id = req.params.order_id;
+    await Order.updateOne({_id: order_id}, {boosterId: id, state:'Accepted'});
+    const orders = await Order.find({state:['Waiting', 'Accepted']}).sort({date:-1});
+    return res.status(200).json({orders});
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(constants.INTERNAL_SERVER_ERROR);
+  }
+}
+
 const createOrder = async ( req, res, next ) => {
   try {
     const { email, game, boostType, current, desired, price, account, mainOption, orderOption, comment } = req.body;
@@ -88,6 +111,7 @@ const createOrder = async ( req, res, next ) => {
 
     order = await Order.create({
       userId: user.id,
+      boosterId: user.id,
       game,
       boostType,
       current,
@@ -136,3 +160,5 @@ const createOrder = async ( req, res, next ) => {
 exports.createOrder = createOrder;
 exports.getMyOrders = getMyOrders;
 exports.getAllOrders = getAllOrders;
+exports.getAvailableOrders = getAvailableOrders;
+exports.acceptOrder = acceptOrder;

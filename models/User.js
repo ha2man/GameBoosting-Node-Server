@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
   },
   discord: {
     type: String,
-    unique: true,
+    default: '',
   },
   password: {
     type: String,
